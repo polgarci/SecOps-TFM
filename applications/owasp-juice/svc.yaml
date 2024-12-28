@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: juice-shop
+spec:
+  type: LoadBalancer
+  selector:
+    app: juice-shop
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 3000 
