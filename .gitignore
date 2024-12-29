@@ -1,1 +1,6 @@
 #.gitignore
+**/.terraform/*
+*.hcl
+*.tfstate.*
+*tfstate
+*.tfplan
