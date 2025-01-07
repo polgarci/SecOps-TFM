@@ -10,10 +10,10 @@ import (
 	"strings"
 	"time"
 
-	v1 "k8s.io/api/core/v1" // For PodLogOptions
+	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
-	corev1 "k8s.io/client-go/kubernetes/typed/core/v1" // For PodInterface
+	corev1 "k8s.io/client-go/kubernetes/typed/core/v1"
 	"k8s.io/client-go/rest"
 )
 
@@ -71,7 +71,6 @@ func collectCronJobLogs(namespace string) ([]LogEntry, error) {
 
 	var allLogs []LogEntry
 	for _, pod := range pods.Items {
-		// Filter for kube-hunter and kube-bench jobs
 		if strings.Contains(pod.Name, "kube-hunter") || strings.Contains(pod.Name, "kube-bench") {
 			for _, container := range pod.Spec.Containers {
 				log.Printf("Fetching logs for Pod: %s, Container: %s", pod.Name, container.Name)

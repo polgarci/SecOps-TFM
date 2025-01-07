@@ -47,10 +47,10 @@ spec:
       serviceAccountName: log-collector-sa
       containers:
         - name: log-collector
-          image: rorexz/tfm@sha256:f359a6ed7801de530ad60acddc1c8fe61d550ea3c5ddcd02bbb0819b3c840500
+          image: rorexz/tfm@sha256:9c0bae70d6aa148ec751ede62025497f510bd4a40186c3754613bf3de47b02eb
           imagePullPolicy: Always         
           ports:
-            - containerPort: 8080
+            - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -63,6 +63,6 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8080
+      targetPort: 80
   type: LoadBalancer
 

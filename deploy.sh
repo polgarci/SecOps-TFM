@@ -13,8 +13,10 @@ gcloud container clusters get-credentials secops-cluster --region=europe-west1
 
 #### SecOps
 helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard --set kong.admin.tls.enabled=false
+kubectl patch service kubernetes-dashboard-kong-proxy -n kubernetes-dashboard -p '{"spec": {"type": "LoadBalancer"}}'
 kubectl apply -f applications/kubernetes-dashboard/cluster-role.yaml -f applications/kubernetes-dashboard/service-account.yaml
 kubectl create namespace secops
 kubectl apply -f applications/kube-bench/cronjob.yaml -f applications/kube-hunter/job.yaml
 kubectl apply -f applications/owasp-juice/deployment.yaml -f applications/owasp-juice/svc.yaml -n secops
 kubectl apply -f applications/sock-shop/demo.yaml
+kubectl apply -f applications/collector/kubernetes/k8s.yaml
